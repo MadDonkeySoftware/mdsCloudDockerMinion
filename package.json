@@ -33,7 +33,7 @@
     "bunyan": "^1.8.15",
     "del": "^6.0.0",
     "dockerode": "^3.3.1",
-    "express": "^4.17.2",
+    "express": "^4.18.2",
     "express-fileupload": "^1.3.1",
     "jsonschema": "^1.4.0",
     "jsonwebtoken": "^8.5.1",
