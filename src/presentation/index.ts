@@ -1,50 +1,24 @@
-import fastify, { FastifyServerOptions } from 'fastify';
+import fastify, { FastifyInstance, FastifyServerOptions } from 'fastify';
 import { fastifyAwilixPlugin, diContainer, Cradle } from '@fastify/awilix';
 import multipart from '@fastify/multipart';
 import config from 'config';
 import { TypeBoxTypeProvider } from '@fastify/type-provider-typebox';
 import { rootRouter } from './routes';
-import { asFunction, AwilixContainer, Lifetime } from 'awilix';
-import { ContainerManager } from '../core/container-manager';
+import { AwilixContainer } from 'awilix';
 import { Logic } from '../core/logic';
 import { initialize } from './logging';
 import fastifySwagger from '@fastify/swagger';
 import fastifySwaggerUi from '@fastify/swagger-ui';
-
-export function defaultDependencyInjection(
-  diContainer: AwilixContainer<Cradle>,
-) {
-  // We define this outside of the registration functions since the functions
-  // execute the first time the item is requested.
-  const manager = new ContainerManager();
-  manager.startMonitor();
-
-  // Wire things up!
-  diContainer.register({
-    containerManager: asFunction(
-      () => {
-        return manager;
-      },
-      {
-        lifetime: Lifetime.SINGLETON,
-        dispose: (containerManager) => {
-          containerManager.stopMonitor();
-        },
-      },
-    ),
-    logic: asFunction(
-      ({ containerManager }) => {
-        return new Logic({ containerManager });
-      },
-      {
-        lifetime: Lifetime.SCOPED,
-      },
-    ),
-  });
-}
+import { diContainerInit } from './di-container-init';
 
 export async function buildApp(
-  dependencyInjectionOverride?: (diContainer: AwilixContainer<Cradle>) => void,
+  dependencyInjectionOverride?: ({
+    diContainer,
+    server,
+  }: {
+    diContainer: AwilixContainer<Cradle>;
+    server: FastifyInstance;
+  }) => void,
 ) {
   // Note: The object coming out of the config is immutable. We spread into
   // a new object so that fastify can modify the object internally as it expects
@@ -77,19 +51,19 @@ export async function buildApp(
   });
 
   if (dependencyInjectionOverride) {
-    dependencyInjectionOverride(diContainer);
+    dependencyInjectionOverride({ diContainer, server });
   } else {
-    defaultDependencyInjection(diContainer);
+    diContainerInit({ diContainer, server });
   }
 
   await server.register(multipart);
   await server.register(rootRouter);
 
   server.addHook('onRequest', (request, reply, done) => {
-    // We pre-resolve all the diScope services here so that various code editor "find all references" works properly.
-    const logic = request.diScope.resolve<Logic>('logic');
     request.services = {
-      logic,
+      get logic() {
+        return request.diScope.resolve<Logic>('logic');
+      },
     };
 
     done();

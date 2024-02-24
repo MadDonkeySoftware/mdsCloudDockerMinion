@@ -103,7 +103,10 @@ dist
 # TernJS port file
 .tern-port
 
-.vscode/
+# Popular editors
+.idea
+.vscode
+
 # typescript outputs
 dist/
 

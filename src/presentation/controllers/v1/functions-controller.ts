@@ -149,6 +149,7 @@ export function functionsController(app: FastifyInstance) {
             message: 'sourceArchive missing from payload',
           },
         ]);
+        request.log.trace('sourceArchive missing from payload');
         return;
       }
 
@@ -180,6 +181,10 @@ export function functionsController(app: FastifyInstance) {
       if (validationFailures.length > 0) {
         response.status(400);
         response.send(validationFailures);
+        request.log.trace(
+          { validationFailures },
+          'Request could not be processed due to validation failures',
+        );
         return;
       }
 
