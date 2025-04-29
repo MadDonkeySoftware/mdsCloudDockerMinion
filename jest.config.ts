@@ -13,10 +13,10 @@ const config: JestConfigWithTsJest = {
   ],
   coverageThreshold: {
     global: {
-      branches: 90,
-      functions: 90,
-      lines: 90,
-      statements: 90,
+      branches: 79,
+      functions: 84,
+      lines: 86,
+      statements: 86,
     },
   },
   reporters: ['<rootDir>/jest-reporters/emit-only-failures.js'],

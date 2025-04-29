@@ -43,7 +43,7 @@ describe('functionController test', () => {
   }
 
   beforeAll(async () => {
-    app = await src.buildApp((diContainer) => {
+    app = await src.buildApp(({ diContainer }) => {
       diContainer.register({
         logic: asFunction(() => logicMock, {
           lifetime: Lifetime.SCOPED,
