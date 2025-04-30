@@ -40,7 +40,7 @@
     "@grpc/grpc-js": "^1.5.5",
     "@grpc/proto-loader": "^0.6.9",
     "@maddonkeysoftware/mds-cloud-sdk-node": "^0.2.9",
-    "@sinclair/typebox": "^0.25.10",
+    "@sinclair/typebox": "^0.34.0",
     "@tsconfig/node18": "^1.0.1",
     "awilix": "^8.0.1",
     "config": "^3.3.8",
