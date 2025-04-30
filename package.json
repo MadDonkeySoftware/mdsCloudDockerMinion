@@ -54,7 +54,7 @@
     "pino": "^8.14.1",
     "shelljs": "^0.8.5",
     "tar-fs": "^2.1.1",
-    "unzipper": "^0.10.11"
+    "unzipper": "^0.12.0"
   },
   "devDependencies": {
     "@types/config": "^3.3.0",
