@@ -21,8 +21,6 @@ export class DockerRepoImpl implements DockerRepo {
 
       if (process.env.MDS_CLOUD_DOCKER_SOCK) {
         socketPath = process.env.MDS_CLOUD_DOCKER_SOCK;
-      } else if (config.has('docker.socketPath')) {
-        socketPath = config.get('docker.socketPath');
       }
 
       this.docker = new Docker({

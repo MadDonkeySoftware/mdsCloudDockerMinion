@@ -137,6 +137,7 @@ describe('functionController test', () => {
       // Assert
       expect(response.statusCode).toBe(400);
       expect(JSON.parse(response.body)).toEqual({
+        code: 'FST_ERR_VALIDATION',
         error: 'Bad Request',
         message: "body must have required property 'name'",
         statusCode: 400,

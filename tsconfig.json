@@ -1,10 +1,11 @@
 {
   // https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html
-  "extends": "@tsconfig/node16/tsconfig.json",
+  "extends": "@tsconfig/node22/tsconfig.json",
   "ts-node": {
     "files": true,
   },
   "compilerOptions": {
+    "lib": ["es2022"],
     "outDir": "./dist",
     "rootDir": "./src",
     "declaration": true,
