@@ -36,7 +36,7 @@
     "@fastify/multipart": "^8.0.0",
     "@fastify/swagger": "^8.7.0",
     "@fastify/swagger-ui": "^1.9.2",
-    "@fastify/type-provider-typebox": "^2.4.0",
+    "@fastify/type-provider-typebox": "^5.1.0",
     "@grpc/grpc-js": "^1.5.5",
     "@grpc/proto-loader": "^0.7.0",
     "@maddonkeysoftware/mds-cloud-sdk-node": "^0.2.9",

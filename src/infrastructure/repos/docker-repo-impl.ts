@@ -14,7 +14,21 @@ export class DockerRepoImpl implements DockerRepo {
   docker: Docker;
 
   constructor(docker?: Docker) {
-    this.docker = docker ?? new Docker({ socketPath: '/var/run/docker.sock' });
+    if (docker) {
+      this.docker = docker;
+    } else {
+      let socketPath = '/var/run/docker.sock';
+
+      if (process.env.MDS_CLOUD_DOCKER_SOCK) {
+        socketPath = process.env.MDS_CLOUD_DOCKER_SOCK;
+      } else if (config.has('docker.socketPath')) {
+        socketPath = config.get('docker.socketPath');
+      }
+
+      this.docker = new Docker({
+        socketPath,
+      });
+    }
   }
 
   async buildImage(

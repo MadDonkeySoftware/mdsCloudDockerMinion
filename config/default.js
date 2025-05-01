@@ -44,4 +44,8 @@ module.exports = {
 
   // The provider element for all ORIDs created or consumed. Used in the validation process.
   oridProviderKey: 'orid',
+
+  docker: {
+    socketPath: '/var/run/docker.sock',
+  },
 };
