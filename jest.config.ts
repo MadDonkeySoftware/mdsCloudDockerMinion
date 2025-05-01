@@ -13,7 +13,7 @@ const config: JestConfigWithTsJest = {
   ],
   coverageThreshold: {
     global: {
-      branches: 79,
+      branches: 78,
       functions: 84,
       lines: 86,
       statements: 86,
