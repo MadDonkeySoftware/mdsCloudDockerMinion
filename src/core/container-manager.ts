@@ -129,9 +129,8 @@ export class ContainerManager {
     fullImageName: string,
   ): Promise<string | undefined> {
     const logger = getLogger();
-    const existingContainers = await this.findContainersMatchingImage(
-      fullImageName,
-    );
+    const existingContainers =
+      await this.findContainersMatchingImage(fullImageName);
     const runningContainers = existingContainers.filter(
       (e) => e.State.toUpperCase() === 'RUNNING',
     );
@@ -195,9 +194,8 @@ export class ContainerManager {
     await this.throttle.acquire(fullImageName);
     let returnData: undefined | ReadyFunctionContainerForImageResult;
     try {
-      let containerId = await this.electExistingContainerToReadyForImage(
-        fullImageName,
-      );
+      let containerId =
+        await this.electExistingContainerToReadyForImage(fullImageName);
       if (!containerId) {
         containerId = await this.docker.createContainer({
           image: `${fullTagName}:${tagVersion}`,

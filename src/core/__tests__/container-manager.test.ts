@@ -261,9 +261,8 @@ describe('container-manager', () => {
       const manager = new ContainerManager({
         dockerRepo: dockerMock as unknown as DockerRepo,
       });
-      const result = await manager.electExistingContainerToReadyForImage(
-        'test:image',
-      );
+      const result =
+        await manager.electExistingContainerToReadyForImage('test:image');
 
       // Assert
       expect(result).toBeFalsy();
@@ -283,9 +282,8 @@ describe('container-manager', () => {
       const manager = new ContainerManager({
         dockerRepo: dockerMock as unknown as DockerRepo,
       });
-      const result = await manager.electExistingContainerToReadyForImage(
-        'test:latest',
-      );
+      const result =
+        await manager.electExistingContainerToReadyForImage('test:latest');
 
       // Assert
       expect(result).toEqual('test-id');
@@ -304,9 +302,8 @@ describe('container-manager', () => {
       const manager = new ContainerManager({
         dockerRepo: dockerMock as unknown as DockerRepo,
       });
-      const result = await manager.electExistingContainerToReadyForImage(
-        'test:latest',
-      );
+      const result =
+        await manager.electExistingContainerToReadyForImage('test:latest');
 
       // Assert
       expect(result).toEqual('test-id-2');
@@ -333,9 +330,8 @@ describe('container-manager', () => {
       const manager = new ContainerManager({
         dockerRepo: dockerMock as unknown as DockerRepo,
       });
-      const result = await manager.electExistingContainerToReadyForImage(
-        'test:latest',
-      );
+      const result =
+        await manager.electExistingContainerToReadyForImage('test:latest');
 
       // Assert
       expect(result).toEqual('test-id');
@@ -360,9 +356,8 @@ describe('container-manager', () => {
       const manager = new ContainerManager({
         dockerRepo: dockerMock as unknown as DockerRepo,
       });
-      const result = await manager.electExistingContainerToReadyForImage(
-        'test:latest',
-      );
+      const result =
+        await manager.electExistingContainerToReadyForImage('test:latest');
 
       // Assert
       expect(result).toBeFalsy();
@@ -397,9 +392,8 @@ describe('container-manager', () => {
       const manager = new ContainerManager({
         dockerRepo: dockerMock as unknown as DockerRepo,
       });
-      const result = await manager.electExistingContainerToReadyForImage(
-        'test:latest',
-      );
+      const result =
+        await manager.electExistingContainerToReadyForImage('test:latest');
 
       // Assert
       expect(result).toEqual('test-id-2');
